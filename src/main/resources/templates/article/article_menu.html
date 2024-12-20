@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Artikel SoLAW - Membuka Akses Hukum Tanpa Batas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/navigation/navigation.css}">
+    <link rel="stylesheet" th:href="@{/css/article/article_menu.css}">
+</head>
+<body>
+    <nav th:replace="~{navigation/navigation :: page_navbar}"></nav>
+
+    <div class="container">
+        <div class="main mt-3">
+            <div class="article-tagline">
+                <h2 class="tagline-title">Selamat Datang di Menu Artikel Hukum Kami</h2>
+                <p class="tagline-text">Temukan wawasan hukum yang informatif, mendalam, dan relevan di sini. Kami hadir untuk menjawab kebutuhan Anda akan pemahaman yang lebih baik tentang hukum, membantu Anda memahami hak dan kewajiban, serta memberikan solusi atas isu-isu hukum terkini.</p>
+            </div>
+            <div class="article-list d-flex flex-column gap-2 mb-3">
+                <a href="" class="article-detail text-decoration-none" th:each="article : ${articles}">
+                    <div class="card d-flex flex-row border-0 shadow ">
+                        <img th:src="${article.thumbnailUrl}" alt="thumbnail" class="card-img">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="${article.title}"></h4>
+                            <p class="card-text" style="text-align: justify;" th:text="${article.description}"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{navigation/navigation :: page_footer}"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

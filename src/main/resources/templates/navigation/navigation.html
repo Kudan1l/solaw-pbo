@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="">Beranda</a>
+            <a class="nav-link" href="/">Beranda</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Forum</a>
@@ -26,7 +26,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Artikel</a>
+            <a class="nav-link" href="/Artikel">Artikel</a>
           </li>
         </ul>
 <!--        <form class="d-flex" role="search">-->
@@ -45,7 +45,31 @@
           </li>
         </ul>
       </div>
-
     </div>
   </nav>
+
+  <footer th:fragment="page_footer">
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-lg-10 col-sm-12 about">
+          <h5>Tentang Kami</h5>
+          <p>Solution of Law (SoLAW) adalah platform inovatif yang bertujuan untuk mempermudah akses masyarakat terhadap layanan hukum. Kami memahami bahwa proses hukum sering kali rumit dan memakan waktu, sehingga kami hadir untuk memberikan solusi yang efisien dan transparan.</p>
+        </div>
+        <div class="col-2 contact">
+          <h5>Hubungi Kami</h5>
+          <p><i class="bi bi-geo-alt-fill"></i>Telkom Univeristy</p>
+          <p><i class="bi bi-envelope-fill"></i>solaw@example.com</p>
+          <p><i class="bi bi-telephone-fill"></i>+62 1234-5678-912</p>
+          <div class="social-media">
+            <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.youtube.com"><i class="bi bi-youtube"></i></a>
+            <a href="https://github.com/Kudan1l/solaw-pbo"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center py-2 border-top copyright">
+        <small>&copy; 2024 Kelompok 10 IT-46-02.</small>
+      </div>
+    </div>
+  </footer>
 </html>

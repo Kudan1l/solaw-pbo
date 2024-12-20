@@ -17,4 +17,10 @@ public class HomeController {
         model.addAttribute("articles", articlesService.getLatestArticles(3));
         return "index";
     }
+
+    @GetMapping("/Artikel")
+    public String artikelMenu(Model model) {
+        model.addAttribute("articles", articlesService.getAllArticles());
+        return "article/article_menu";
+    }
 }
