@@ -1,0 +1,8 @@
+.card-title,
+.card-text {
+    color: #00204a;
+}
+
+.card-text {
+    text-align: justify;
+}

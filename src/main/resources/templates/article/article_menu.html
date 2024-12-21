@@ -17,8 +17,11 @@
                 <h2 class="tagline-title">Selamat Datang di Menu Artikel Hukum Kami</h2>
                 <p class="tagline-text">Temukan wawasan hukum yang informatif, mendalam, dan relevan di sini. Kami hadir untuk menjawab kebutuhan Anda akan pemahaman yang lebih baik tentang hukum, membantu Anda memahami hak dan kewajiban, serta memberikan solusi atas isu-isu hukum terkini.</p>
             </div>
+            <div class="mb-3 d-flex justify-content-end">
+                <a href="" class="btn btn-primary"><i class="bi bi-sort-down me-2"></i>Filter</a>
+            </div>
             <div class="article-list d-flex flex-column gap-2 mb-3">
-                <a href="" class="article-detail text-decoration-none" th:each="article : ${articles}">
+                <a th:href="@{/artikel/{id}(id=${article.id})}" class="article-detail text-decoration-none" th:each="article : ${articles}">
                     <div class="card d-flex flex-row border-0 shadow ">
                         <img th:src="${article.thumbnailUrl}" alt="thumbnail" class="card-img">
                         <div class="card-body">
