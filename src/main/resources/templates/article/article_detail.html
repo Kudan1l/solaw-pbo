@@ -12,10 +12,17 @@
   <nav th:replace="~{navigation/navigation :: page_navbar}"></nav>
 
   <div class="container">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="mt-2">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="">Artikel</a></li>
+              <li class="breadcrumb-item active" aria-current="page" th:text="${article.title}"></li>
+          </ol>
+      </nav>
       <div class="card my-3 border-0 shadow">
           <div class="card-body">
-              <div class="d-flex justify-content-end">
-                  <span>Published on <span th:text="${formattedDate}"></span></span>
+              <div class="d-flex justify-content-end publish-date">
+                  <span class="publish-date">Published on <span class="publish-date" th:text="${formattedDate}"></span></span>
               </div>
               <h3 class="card-title" th:text="${article.title}"></h3>
               <div class="card-list d-flex gap-2 mb-3">
