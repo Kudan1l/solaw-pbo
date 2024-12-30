@@ -143,6 +143,22 @@ ALTER TABLE `article_category`
   ADD CONSTRAINT `FKhcnk95vqpdwklh7jef9yxs511` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`);
 COMMIT;
 
+CREATE TABLE Consultant (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    expertise VARCHAR(255)
+);
+
+CREATE TABLE ConsultationRequest (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    case_description TEXT NOT NULL,
+    status VARCHAR(20) DEFAULT 'Pending',
+    user_id BIGINT,
+    consultant_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (consultant_id) REFERENCES Consultant(id)
+);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
