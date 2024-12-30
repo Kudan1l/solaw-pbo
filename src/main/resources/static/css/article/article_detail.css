@@ -1,0 +1,13 @@
+.card-title,
+.card-text, .publish-date {
+    color: #00204a;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+.breadcrumb a, .breadcrumb-item.active, .breadcrumb-item{
+    color: #e45f2b;
+    text-decoration: none;
+}
