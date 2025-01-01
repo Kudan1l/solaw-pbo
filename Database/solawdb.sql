@@ -36,7 +36,7 @@ CREATE TABLE `articles` (
   `thumbnail_url` varchar(255) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `updated_at` datetime(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `articles`
@@ -58,7 +58,7 @@ INSERT INTO `articles` (`id`, `content`, `created_at`, `description`, `status`, 
 CREATE TABLE `article_category` (
   `article_id` int NOT NULL,
   `category_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `article_category`
@@ -80,7 +80,7 @@ INSERT INTO `article_category` (`article_id`, `category_id`) VALUES
 CREATE TABLE `categories` (
   `id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categories`
