@@ -2,7 +2,7 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3308
+-- Host: localhost:3306
 -- Generation Time: Dec 20, 2024 at 02:55 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.13
@@ -36,7 +36,7 @@ CREATE TABLE `articles` (
   `thumbnail_url` varchar(255) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `updated_at` datetime(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `articles`
@@ -58,7 +58,7 @@ INSERT INTO `articles` (`id`, `content`, `created_at`, `description`, `status`, 
 CREATE TABLE `article_category` (
   `article_id` int NOT NULL,
   `category_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `article_category`
@@ -80,7 +80,7 @@ INSERT INTO `article_category` (`article_id`, `category_id`) VALUES
 CREATE TABLE `categories` (
   `id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categories`
@@ -142,6 +142,22 @@ ALTER TABLE `article_category`
   ADD CONSTRAINT `FKcr43tij2a665cl45m9gfn01p9` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `FKhcnk95vqpdwklh7jef9yxs511` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`);
 COMMIT;
+
+CREATE TABLE Consultant (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    expertise VARCHAR(255)
+);
+
+CREATE TABLE ConsultationRequest (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    case_description TEXT NOT NULL,
+    status VARCHAR(20) DEFAULT 'Pending',
+    user_id BIGINT,
+    consultant_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (consultant_id) REFERENCES Consultant(id)
+);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

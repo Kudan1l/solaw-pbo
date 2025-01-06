@@ -14,7 +14,11 @@
             <a class="nav-link" href="/">Beranda</a>
           </li>
           <li class="nav-item">
+
             <a class="nav-link" href="#">Forum</a>
+
+            <a class="nav-link" href="/threads">Forum</a>
+
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +44,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="">Profile</a></li>
-              <li><a class="dropdown-item" href="">Logout</a></li>
+              <li><a class="dropdown-item" th:href="@{/login}">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -55,7 +59,7 @@
           <h5>Tentang Kami</h5>
           <p>Solution of Law (SoLAW) adalah platform inovatif yang bertujuan untuk mempermudah akses masyarakat terhadap layanan hukum. Kami memahami bahwa proses hukum sering kali rumit dan memakan waktu, sehingga kami hadir untuk memberikan solusi yang efisien dan transparan.</p>
         </div>
-        <div class="col-2 contact">
+        <div class="col-lg-2 col-sm-3 contact">
           <h5>Hubungi Kami</h5>
           <p><i class="bi bi-geo-alt-fill"></i>Telkom Univeristy</p>
           <p><i class="bi bi-envelope-fill"></i>solaw@example.com</p>
