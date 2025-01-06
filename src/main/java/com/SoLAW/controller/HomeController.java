@@ -35,4 +35,5 @@ public class HomeController {
         model.addAttribute("formattedDate", articlesService.formatDate(articlesService.getArticleById(id).getCreatedAt()));
         return "article/article_detail";
     }
+    
 }
