@@ -28,9 +28,6 @@ public class HomeController {
         model.addAttribute("articles", articlesService.getAllArticles());
         return "article/article_menu";
     }
-<<<<<<< HEAD
-}
-=======
 
     @GetMapping("/artikel/{id}")
     public String articleDetail(@PathVariable("id") Integer id, Model model) {
@@ -38,7 +35,4 @@ public class HomeController {
         model.addAttribute("formattedDate", articlesService.formatDate(articlesService.getArticleById(id).getCreatedAt()));
         return "article/article_detail";
     }
-
-
 }
->>>>>>> 5ac275e3fdd44dcef90f14ddf46396476e9170a9
