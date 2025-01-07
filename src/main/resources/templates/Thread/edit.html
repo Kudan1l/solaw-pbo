@@ -11,76 +11,91 @@
 
 <body>
 <nav th:replace="~{navigation/navigation :: page_navbar}"></nav>
-
-<div class="container">
-    <div class="row">
-        <!-- Sidebar -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
         <aside class="col-md-4">
             <a href="/threads" class="text-decoration-none">
                 <h1>Forum Diskusi</h1>
             </a>
-
-            <!-- Form Search -->
-            <form action="/threads/search" method="get" class="form-thread">
-                <input type="text" name="query" class="form-control mb-2" placeholder="Cari topik..." required>
-                <button type="submit" class="btn btn-search">Cari</button>
-            </form>
-
-            <!-- Button to Create Thread -->
-            <a href="/threads/create" class="thread">Buat Thread Baru</a>
         </aside>
-
-        <!-- Main Content -->
-        <main class="col-md-8">
-            <h1>Edit Thread</h1>
-
-            <form th:action="@{/threads/edit/{id}(id=${thread.id})}" method="post">
-                <div class="d-flex align-items-center mb-3">
-                    <!-- Avatar Image -->
-                    <img th:src="@{src/avatar.jpg}" width="30" height="30" class="rounded-circle mr-3">
-
-                    <!-- User and Post Details -->
-                    <div>
-                        <p class="mb-0" style="font-size: 0.85rem;">
-                            <strong th:text="${thread.author != null ? thread.author : 'Anonim'}"></strong>
-                        </p>
-                        <p class="text-muted" style="font-size: 0.75rem;">
-                            Diposting pada: <strong th:text="${#temporals.format(thread.createdAt, 'dd MMM yyyy, HH:mm')}"></strong>
-                        </p>
-                    </div>
-
-                    <!-- Edit and Delete Buttons (on the right) -->
-                    <div class="ml-auto">
-                        <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
-                    </div>
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header text-white text-center" style="background-color: #004070">
+                    <h1>Edit Thread</h1>
                 </div>
+                <div class="card-body">
+                    <form th:action="@{/threads/edit/{id}(id=${thread.id})}" method="POST" class="needs-validation" novalidate>
+                        <div class="d-flex align-items-center mb-3">
 
-                <div class="form-group">
-                    <label for="title">Judul</label>
-                    <input type="text" name="title" id="title" th:value="${thread.title}" class="form-control" required>
+                            <!-- User and Post Details -->
+                            <div>
+                                <p class="mb-0" style="font-size: 0.85rem;">
+                                    <strong th:text="${thread.author != null ? thread.author : 'User'}"></strong>
+                                </p>
+                                <p class="text-muted" style="font-size: 0.75rem;">
+                                    Diposting pada: <strong th:text="${#temporals.format(thread.createdAt, 'dd MMM yyyy, HH:mm')}"></strong>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Judul:</label>
+                            <input type="text" id="title" name="title" th:value="${thread.title}" class="form-control" placeholder="Masukkan judul Forum" required />
+                            <div class="invalid-feedback">Judul Forum wajib diisi.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Konten:</label>
+                            <textarea id="content" name="content" th:text="${thread.content}" class="form-control" rows="5" placeholder="Masukkan konten Forum" required></textarea>
+                            <div class="invalid-feedback">Konten Forum wajib diisi.</div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Update Thread</button>
+                            <a href="/threads" class="btn btn-danger">Batal</a>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label for="content">Konten</label>
-                    <textarea name="content" id="content" class="form-control" required th:text="${thread.content}"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-3">Update Thread</button>
-            </form>
-
-
-
-
-
-
-
-            </section>
-        </main>
+            </div>
+        </div>
     </div>
 </div>
 
 <footer th:replace="~{navigation/navigation :: page_footer}"></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    // Bootstrap validation
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+
+                var title = form.querySelector('#title');
+                var content = form.querySelector('#content');
+
+
+                if (!form.checkValidity() || title.value.trim() === '' || content.value.trim() === '') {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (title.value.trim() === '') {
+                        title.classList.add('is-invalid');
+                    } else {
+                        title.classList.remove('is-invalid');
+                    }
+                    if (content.value.trim() === '') {
+                        content.classList.add('is-invalid');
+                    } else {
+                        content.classList.remove('is-invalid');
+                    }
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+
 </body>
 </html>

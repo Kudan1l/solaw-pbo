@@ -53,7 +53,7 @@
                         <!-- User and Post Details -->
                         <div>
                             <p class="mb-0" style="font-size: 0.85rem;">
-                                <strong th:text="${thread.author != null ? thread.author : 'Anonim'}"></strong>
+                                <strong th:text="${thread.author != null ? thread.author : 'User'}"></strong>
                             </p>
                             <p class="text-muted" style="font-size: 0.75rem; margin-top: 0;">
                                 Diposting pada: <strong th:text="${#temporals.format(thread.createdAt, 'dd MMM yyyy, HH:mm')}"></strong>
@@ -62,7 +62,7 @@
                     </div>
 
                     <!-- Edit and Delete Buttons (Positioned in the top-right corner) -->
-                    <div style="position: absolute; top: 10px; right: 10px;">
+                    <div th:if="${thread.author.equalsIgnoreCase('User')}" style="position: absolute; top: 10px; right: 10px;">
                         <!-- Edit Button (Link to Edit Page) -->
                         <a th:href="@{/threads/edit/{id}(id=${thread.id})}" class="btn btn-primary btn-sm">Edit</a>
 
