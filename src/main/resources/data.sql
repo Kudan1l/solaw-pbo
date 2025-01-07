@@ -24,3 +24,48 @@ INSERT INTO `article_category` (`article_id`, `category_id`) VALUES
 (4, 3),
 (4, 4)
 ON DUPLICATE KEY UPDATE `article_id` = VALUES(`article_id`), category_id = VALUES(`category_id`);
+
+INSERT INTO thread (id, author, content, created_at, title)
+VALUES
+    (1, 'Rudi Santoso', 'Pemrograman Java memungkinkan kita untuk membangun aplikasi yang efisien dan skalabel. Salah satu konsep penting dalam Java adalah Object-Oriented Programming (OOP), yang memudahkan pengorganisasian kode dan pemeliharaan aplikasi.', '2025-01-06 10:00:00', 'Pengenalan Pemrograman Java'),
+    (2, 'Siti Nurhaliza', 'Spring Framework adalah salah satu framework Java yang sangat populer. Dengan Spring, kita bisa mengembangkan aplikasi berbasis Java dengan lebih cepat dan mudah menggunakan berbagai modul seperti Spring Boot, Spring MVC, dan Spring Data JPA.', '2025-01-06 11:00:00', 'Pengenalan Spring Framework'),
+    (3, 'Budi Pratama', 'Spring Boot memudahkan pengembangan aplikasi dengan menyederhanakan konfigurasi dan setup proyek. Kita dapat membuat aplikasi microservices dengan Spring Boot hanya dalam beberapa langkah sederhana.', '2025-01-06 12:00:00', 'Mengenal Spring Boot'),
+    (4, 'Andi Wijaya', 'Java Streams adalah fitur baru dalam Java 8 yang memungkinkan kita untuk memproses data dalam bentuk aliran (streams). Dengan Streams, kita dapat memfilter, mengurutkan, dan mengoperasikan data secara deklaratif dengan menggunakan lambda expressions.', '2025-01-06 13:00:00', 'Menggunakan Java Streams'),
+    (5, 'Cindy Lestari', 'Spring Security adalah modul dalam Spring Framework yang digunakan untuk menangani keamanan aplikasi. Dengan Spring Security, kita dapat mengimplementasikan autentikasi dan otorisasi dengan mudah menggunakan konfigurasi berbasis Java atau XML.', '2025-01-06 14:00:00', 'Pengenalan Spring Security')
+ON DUPLICATE KEY UPDATE
+                     id = VALUES(id),
+                     author = VALUES(author),
+                     content = VALUES(content),
+                     created_at = VALUES(created_at),
+                     title = VALUES(title);
+
+INSERT INTO thread (id, author, content, created_at, title)
+VALUES
+    (1, 'Rudi Santoso', 'Pemrograman Java memungkinkan kita untuk membangun aplikasi yang efisien dan skalabel. Salah satu konsep penting dalam Java adalah Object-Oriented Programming (OOP), yang memudahkan pengorganisasian kode dan pemeliharaan aplikasi.', '2025-01-06 10:00:00', 'Pengenalan Pemrograman Java'),
+    (2, 'Siti Nurhaliza', 'Spring Framework adalah salah satu framework Java yang sangat populer. Dengan Spring, kita bisa mengembangkan aplikasi berbasis Java dengan lebih cepat dan mudah menggunakan berbagai modul seperti Spring Boot, Spring MVC, dan Spring Data JPA.', '2025-01-06 11:00:00', 'Pengenalan Spring Framework'),
+    (3, 'Budi Pratama', 'Spring Boot memudahkan pengembangan aplikasi dengan menyederhanakan konfigurasi dan setup proyek. Kita dapat membuat aplikasi microservices dengan Spring Boot hanya dalam beberapa langkah sederhana.', '2025-01-06 12:00:00', 'Mengenal Spring Boot'),
+    (4, 'Andi Wijaya', 'Java Streams adalah fitur baru dalam Java 8 yang memungkinkan kita untuk memproses data dalam bentuk aliran (streams). Dengan Streams, kita dapat memfilter, mengurutkan, dan mengoperasikan data secara deklaratif dengan menggunakan lambda expressions.', '2025-01-06 13:00:00', 'Menggunakan Java Streams'),
+    (5, 'Cindy Lestari', 'Spring Security adalah modul dalam Spring Framework yang digunakan untuk menangani keamanan aplikasi. Dengan Spring Security, kita dapat mengimplementasikan autentikasi dan otorisasi dengan mudah menggunakan konfigurasi berbasis Java atau XML.', '2025-01-06 14:00:00', 'Pengenalan Spring Security')
+ON DUPLICATE KEY UPDATE
+                     id = VALUES(id),
+                     author = VALUES(author),
+                     content = VALUES(content),
+                     created_at = VALUES(created_at),
+                     title = VALUES(title);
+
+INSERT INTO comment (id, author, content, created_at, thread_id)
+VALUES
+    (1, 'Ali Rahman', 'Pemrograman Java memang sangat kuat, terutama dengan konsep OOP-nya. Penerapannya dalam aplikasi besar sangat membantu dalam hal skalabilitas dan pemeliharaan.', '2025-01-06 10:30:00', 1),
+    (2, 'Siti Nurhaliza', 'Saya setuju, dengan Spring Boot kita bisa langsung memulai aplikasi tanpa harus memikirkan konfigurasi yang rumit. Spring Boot memang sangat memudahkan pengembangan.', '2025-01-06 11:15:00', 2),
+    (3, 'Budi Pratama', 'Spring Boot benar-benar menghemat banyak waktu dalam pengembangan aplikasi, terlebih dengan kemudahan membuat aplikasi berbasis microservices yang scalable.', '2025-01-06 12:10:00', 3),
+    (4, 'Rudi Santoso', 'Java Streams sangat membantu dalam memproses data koleksi secara efisien. Dengan Streams, kode menjadi lebih ringkas dan lebih mudah dibaca.', '2025-01-06 13:30:00', 4),
+    (5, 'Cindy Lestari', 'Spring Security adalah salah satu modul yang wajib dipahami jika kita ingin membuat aplikasi yang aman. Dengan Spring Security, kita bisa lebih mudah menangani otorisasi dan autentikasi pengguna.', '2025-01-06 14:20:00', 5),
+    (6, 'Andi Wijaya', 'Untuk mengamankan aplikasi, penting juga untuk memahami mekanisme token JWT yang dapat digunakan bersama dengan Spring Security.', '2025-01-06 15:00:00', 5),
+    (7, 'Ali Rahman', 'Penting untuk selalu mengikuti perkembangan terbaru dari Spring Boot, karena framework ini selalu diperbarui dengan fitur-fitur baru yang sangat berguna.', '2025-01-06 15:30:00', 2),
+    (8, 'Budi Pratama', 'Saya sangat suka dengan kemudahan menggunakan Java Streams untuk memanipulasi data tanpa mengubah struktur data aslinya.', '2025-01-06 16:00:00', 4)
+ON DUPLICATE KEY UPDATE
+                     id = VALUES(id),
+                     author = VALUES(author),
+                     content = VALUES(content),
+                     created_at = VALUES(created_at),
+                     thread_id = VALUES(thread_id);

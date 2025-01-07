@@ -59,7 +59,7 @@ public class ThreadController {
     // Post the new thread (after the form submission)
     @PostMapping
     public String createThread(@ModelAttribute Thread thread, Principal principal) {
-        thread.setAuthor(principal.getName()); // Mengatur nama pengguna yang login
+        thread.setAuthor("User");
         thread.setCreatedAt(LocalDateTime.now()); // Set waktu pembuatan thread
         threadRepository.save(thread);
         return "redirect:/threads"; // Redirect to threads page after creating
@@ -93,11 +93,17 @@ public class ThreadController {
     // Edit Thread - Handle Edit Form Submission
     @PostMapping("/edit/{id}")
     public String handleEditThread(@PathVariable Long id, @ModelAttribute Thread thread) {
-        thread.setId(id);  // Ensure the correct thread is updated
-        thread.setCreatedAt(threadRepository.findById(id).get().getCreatedAt()); // Retain original creation date
-        threadRepository.save(thread);
+        Optional<Thread> existingThread = threadRepository.findById(id);
+        if (existingThread.isPresent()) {
+            Thread updatedThread = existingThread.get();
+            thread.setId(id); // Ensure the correct thread is updated
+            thread.setCreatedAt(updatedThread.getCreatedAt()); // Retain original creation date
+            thread.setAuthor(updatedThread.getAuthor()); // Ensure the author remains unchanged
+            threadRepository.save(thread);
+        }
         return "redirect:/threads"; // Redirect to threads page after editing
     }
+
 
     // Delete Thread
     @GetMapping("/delete/{id}")
