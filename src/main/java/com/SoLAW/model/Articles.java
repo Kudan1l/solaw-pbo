@@ -1,16 +1,14 @@
 package com.SoLAW.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.cglib.core.Local;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Articles {
 
     @Id
@@ -26,7 +24,7 @@ public class Articles {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(name= "thumbnail_url")
+    @Column(name= "thumbnail_url", nullable = false)
     private String thumbnailUrl;
 
     @Enumerated(EnumType.STRING)
@@ -34,11 +32,9 @@ public class Articles {
     private Status status;
 
     @Column(name="created_at", nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -65,5 +61,5 @@ public class Articles {
             name = "article_category",
             joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
-    private Set<Categories> categories;
+    private List<Categories> categories = new ArrayList<>();
 }

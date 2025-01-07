@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forum Diskusi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/navigation/navigation.css}">
+    <link rel="stylesheet" th:href="@{/css/Forum/Forum.css}">
+</head>
+
+<body>
+<nav th:replace="~{navigation/navigation :: page_navbar}"></nav>
+
+<div class="container">
+    <div class="row">
+        <!-- Sidebar -->
+        <aside class="col-md-4">
+            <a href="/threads" class="text-decoration-none">
+                <h1>Forum Diskusi</h1>
+            </a>
+
+            <!-- Form Search -->
+            <form action="/threads/search" method="get" class="form-thread">
+                <input type="text" name="query" class="form-control mb-2" placeholder="Cari topik..." required>
+                <button type="submit" class="btn btn-search">Cari</button>
+            </form>
+
+            <!-- Button to Create Thread -->
+            <a href="/threads/create" class="thread">Buat Thread Baru</a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="col-md-8">
+            <section class="threads mt-4">
+                <div th:if="${query != null}">
+                    <h2 class="text-center">Hasil Pencarian untuk "<span th:text="${query}"></span>"</h2>
+                </div>
+
+                <!-- Display message if no threads are found -->
+                <div th:if="${threads.isEmpty()}">
+                    <h2 class="text-center">Pencarian Tidak Ditemukan</h2>
+                </div>
+
+                <!-- Thread List -->
+                <div th:each="thread : ${threads}" class="thread-card mb-4" style="position: relative;">
+
+                    <!-- User and Avatar Section -->
+                    <div class="d-flex align-items-center mb-2">
+                        <!-- Avatar Image -->
+                        <img th:src="@{src/avatar.jpg}" width="30" height="30" class="rounded-circle mr-3">
+
+                        <!-- User and Post Details -->
+                        <div>
+                            <p class="mb-0" style="font-size: 0.85rem;">
+                                <strong th:text="${thread.author != null ? thread.author : 'User'}"></strong>
+                            </p>
+                            <p class="text-muted" style="font-size: 0.75rem; margin-top: 0;">
+                                Diposting pada: <strong th:text="${#temporals.format(thread.createdAt, 'dd MMM yyyy, HH:mm')}"></strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Edit and Delete Buttons (Positioned in the top-right corner) -->
+                    <div th:if="${thread.author.equalsIgnoreCase('User')}" style="position: absolute; top: 10px; right: 10px;">
+                        <!-- Edit Button (Link to Edit Page) -->
+                        <a th:href="@{/threads/edit/{id}(id=${thread.id})}" class="btn btn-primary btn-sm">Edit</a>
+
+                        <!-- Delete Button (Link to Delete Action) -->
+                        <a th:href="@{/threads/delete/{id}(id=${thread.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this thread?');">Delete</a>
+                    </div>
+
+                    <!-- Thread Title -->
+                    <h3>
+                        <a th:href="@{/threads/{id}(id=${thread.id})}" class="konten text-decoration-none">
+                            <span th:text="${thread.title}"></span>
+                        </a>
+                    </h3>
+
+                    <!-- Thread Content -->
+
+                    <p th:text="${thread.content != null ? (thread.content.length() > 100 ? #strings.substring(thread.content, 0, 100) + '...' : thread.content) : ''}"></p>
+
+
+
+
+                </div>
+
+
+
+
+
+            </section>
+        </main>
+    </div>
+</div>
+
+<footer th:replace="~{navigation/navigation :: page_footer}"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
