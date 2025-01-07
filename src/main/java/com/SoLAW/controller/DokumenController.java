@@ -1,6 +1,8 @@
 package com.SoLAW.controller;
 
 import com.SoLAW.model.Documents;
+import com.SoLAW.repository.DocumentsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,18 +56,38 @@ public class DokumenController {
         return "Dokumen/buatSurat"; // Nama template HTML
     }
 
+
+
+
+    @Autowired
+    private DocumentsRepository documentsRepository;
+
+    // Mengirim data form saat di-submit
     @PostMapping("/store")
-    public String storeSurat(@ModelAttribute Documents documents, Model model) {
-        // Proses data yang dikirimkan (misalnya, simpan ke database)
-        // Di sini hanya untuk menunjukkan bagaimana data diterima dan diproses
-        System.out.println("Jenis Surat: " + documents.getJenisSurat());
-        System.out.println("Permasalahan: " + documents.getPermasalahan());
-        System.out.println("Permintaan: " + documents.getPermintaan());
+    public String submitForm(Documents document, Model model) {
+        try {
+            // Pemeriksaan manual (validasi di controller)
+            if (document.getJenisSurat() == null || document.getJenisSurat().trim().isEmpty()) {
+                model.addAttribute("errorJenisSurat", "Jenis surat harus dipilih");
+                return "Dokumen/buatSurat";  // Mengembalikan ke form jika ada kesalahan
+            }
 
-        // Setelah data diproses, tambahkan pesan sukses ke model
-        model.addAttribute("message", "Surat berhasil dibuat!");
+            if (document.getPermasalahan() == null || document.getPermasalahan().trim().isEmpty()) {
+                model.addAttribute("errorPermasalahan", "Permasalahan tidak boleh kosong");
+                return "Dokumen/buatSurat";  // Mengembalikan ke form jika ada kesalahan
+            }
 
-        // Redirect atau tampilkan halaman sukses setelah penyimpanan
-        return "redirect:/suratBerhasil"; // Halaman success.html setelah form berhasil disubmit
+            // Jika tidak ada kesalahan, simpan dokumen ke database
+            documentsRepository.save(document);  // Menyimpan data ke database
+
+            // Menambahkan pesan sukses setelah penyimpanan berhasil
+            model.addAttribute("message", "Dokumen berhasil dibuat");
+            return "Dokumen/pembuatanDokum";  // Mengarahkan ke halaman sukses
+
+        } catch (Exception e) {
+            // Jika terjadi kesalahan, tambahkan pesan error ke model
+            model.addAttribute("error", "Terjadi kesalahan saat menyimpan dokumen.");
+            return "Dokumen/buatSurat";  // Mengarahkan kembali ke halaman form
+        }
     }
 }

@@ -116,17 +116,23 @@
         </table>
     </div>
 
+<div class="container">
     <div class="back">
         <!-- Tombol BACK -->
-        <a th:href="@{/pembuatanDokum.html}" class="text-decoration-none">
-            <button class="balik">BACK</button>
+        <a th:href="@{/pembuatanDokum}">
+            <button class="balik">
+                BACK
+            </button>
         </a>
 
         <!-- Tombol BUAT SURAT -->
-        <a th:href="@{/buatSurat}" class="text-decoration-none">
-            <button class="buat">BUAT SURAT</button>
+        <a th:href="@{/buatSurat}">
+            <button class="buat">
+                BUAT SURAT
+            </button>
         </a>
     </div>
+</div>
 
     <footer th:replace="~{navigation/navigation :: page_footer}"></footer>
 
