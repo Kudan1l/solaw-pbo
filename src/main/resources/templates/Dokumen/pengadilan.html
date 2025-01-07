@@ -183,12 +183,13 @@
             </a>
 
             <!-- Tombol BUAT SURAT -->
-            <a href="{{route('buatSurat')}}">
+            <a th:href="@{/buatSurat}">
                 <button class="buat">
                     BUAT SURAT
                 </button>
             </a>
         </div>
+
     </div>
 
     <footer th:replace="~{navigation/navigation :: page_footer}"></footer>
