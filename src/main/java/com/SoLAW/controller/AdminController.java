@@ -74,7 +74,7 @@ public class AdminController {
         return "redirect:/admin/article";
     }
 
-    @DeleteMapping("/article/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Integer id) {
         articlesService.deleteArticle(id);
         return "redirect:/admin/article";

@@ -38,21 +38,17 @@
                             <span th:if="${article.status == 'draft'}" class="badge bg-secondary">Draft</span>
                             <span th:unless="${article.status == 'draft'}" class="badge bg-success">Publish</span>
                         </td>
-                        <td>
-                            <a th:href="@{/edit/{id}(id=${article.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <td class="d-flex gap-3">
+                            <a th:href="@{/admin/article/edit/{id}(id=${article.id})}" class="btn btn-warning btn-sm">Edit</a>
+                            <form th:action="@{/admin/delete/{id}(id=${article.id})}" method="POST">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus artikel ini?')">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </main>
     </div>
-    <div class="row">
-        <div class="col-2 nav">
-
-        </div>
-
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
