@@ -1,5 +1,5 @@
 # SoLAW - Solution of Law 
-Tugas Besar Kelompok 5 Untuk Mata Kuliah Pemrograman Berorientasi Objek 
+Tugas Besar Kelompok 1 Untuk Mata Kuliah Pemrograman Berorientasi Objek 
 
 Anggota kelompok:
 1. [AGUNG LAKSONO PUTRA](https://github.com/Kudan1l ) 1303220113 
@@ -9,4 +9,4 @@ Anggota kelompok:
 5. [BIMA HASEM AL-PUGA](https://github.com/bimahasem) 1303220092
 6. RANGGA EKA SAPUTRA 1303223072
 
-Created by Kelompok 5 IT-46-02
+Created by Kelompok 1 IT-46-02
